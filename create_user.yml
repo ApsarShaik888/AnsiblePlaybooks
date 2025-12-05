@@ -1,0 +1,9 @@
+---
+ - name: MY_USER_CREATE
+   hosts: All
+   become: true
+   tasks:
+    - name: Create one user
+      user:
+        name: Lucky
+        state: present
