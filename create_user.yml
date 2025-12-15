@@ -1,9 +1,9 @@
 ---
- - name: MY_USER_CREATE
-   hosts: All
+ - name: My_First_user
+   hosts: all
    become: true
    tasks:
-    - name: Create one user
-      user:
-        name: Lucky
-        state: present
+     - name: Creating First User
+       user:
+         name : Lucky
+         state: present

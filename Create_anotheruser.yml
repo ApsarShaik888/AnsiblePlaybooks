@@ -1,0 +1,10 @@
+---
+ - name: Create-another-user
+   hosts: all
+   become: yes
+   tasks:
+     - name: Create one more user
+       user:
+         name: Girllyy
+         state: present
+
