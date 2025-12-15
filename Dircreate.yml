@@ -1,0 +1,9 @@
+---
+ - name: Create a directory
+   hosts: all
+   become: true
+   tasks:
+    - name: To create a directory /home/appadmin
+      file:
+        path: /home/appadmin/Ansibleplaybooks
+        state: directory

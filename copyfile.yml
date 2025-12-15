@@ -1,0 +1,11 @@
+---
+ - name: Copy the file
+   hosts: all
+   become: true
+   tasks:
+     - name: Copying the files
+       copy:
+         src: /home/appadmin/index.html
+         dest: /home/appadmin/YamlScripts
+         mode: 0600
+
