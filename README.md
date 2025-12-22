@@ -3,6 +3,6 @@ git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/ApsarShaik888/ansible-playbook.git
+git remote add origin https://github.com/ApsarShaik888/AnsiblePlaybooks
 git push -u origin main
 
