@@ -1,0 +1,17 @@
+---
+- name: MY Test Playbook
+  hosts: all
+  become: true
+  tasks:
+    - name: stop the httpd
+      service: 
+        name: httpd
+        state: stopped
+      notify: stop apache
+
+  handlers:
+    - name: stop apache
+      yum:
+        name: httpd
+        state: removed
+

@@ -1,0 +1,31 @@
+#Create a playbook that uninstalls different web servers (Apache for CentOS, Nginx for Ubuntu)
+#
+---
+- name: My Playbook_Test
+  hosts: all
+  become: true
+  tasks:
+    - name: Stop apache
+      service:
+        name: httpd
+        state: stopped
+      when: ansible_os_family=="RedHat"
+
+    - name: uninstall apache
+      yum:
+        name: httpd
+        state: removed
+      when: ansible_os_family=="RedHat"
+
+    - name: Stop Nginx
+      service: 
+        name: nginx
+        state: stopped
+      when: ansible_os_family=="Debain"
+
+    - name: uninstall nginx
+      apt:
+        name: nginx
+        state: removed
+      when: ansible_os_family=="Debain"
+

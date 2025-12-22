@@ -1,0 +1,31 @@
+#Create a playbook that installs different web servers (Apache for CentOS, Nginx for Ubuntu)
+#
+---
+- name: MY Playbook Test
+  hosts: all
+  become: true
+  tasks:
+    - name: Install apache for Centos
+      yum:
+        name: httpd
+        state: installed
+      when: ansible_os_family=="RedHat"
+
+    - name: Start apache
+      service: 
+        name: httpd
+        state: started
+      when: ansible_os_family=="RedHat"
+
+    - name: Install Nginx for Ubuntu
+      apt:
+        name: nginx
+        state: installed
+      when: ansible_os_family=="Debian"
+
+    - name: start Nginx
+      service: 
+        name: nginx
+        state: started
+      when: ansible_os_family=="Debian"
+
