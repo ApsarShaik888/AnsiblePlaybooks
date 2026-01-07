@@ -1,0 +1,12 @@
+#To Install multiple Packages
+#
+
+---
+ - name: My Test playbook
+   hosts: webservers
+   become: true
+   tasks:
+     - name: Install required packages
+       yum:
+         name: ['git','wget','gcc','make','telnet','tree','which','docker*']
+         state: installed

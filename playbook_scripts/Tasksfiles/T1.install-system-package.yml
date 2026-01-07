@@ -1,0 +1,12 @@
+# Install system required packages
+#
+---
+ - name: My Install playbook
+   hosts: all
+   become: true
+   tasks:
+     - name: install all required system packages
+       yum:
+         name: ['git','wget','docker*']
+         state: installed
+

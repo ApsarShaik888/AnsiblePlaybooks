@@ -1,0 +1,23 @@
+#Gathering all systeminfo
+#
+---
+ - name: My System infor playbook
+   hosts: all
+   gather_facts: true
+   tasks:
+       - name: created formatted system information
+         debug: 
+          msg:
+            hostname: "{{ ansible_hostname }}"
+            Domain: "{{ansible_domain}}"
+            #Operating System
+            Distribution: "{{ ansible_distribution }} {{ansible_distribution_version }}"
+            os_family: "{{ ansible_os_family }}"
+            kernel: "{{ ansible_kernel }}"
+            Architecture: "{{ ansible_architecture }}"
+
+            #Hardware Resources
+            CPU cores: "{{ ansible_processor_vcpus }}"
+            CPU_model: "{{ ansible_processor[2] if ansible_processor|length > 2 else ansible_processor[0] }}"
+            Total_Memory: "{{ (ansible_memtotal_mb / 1024)| round(1) }}"
+            Free_Memory: "{{ (ansible_memfree_mb / 1024) | round(1) }}" 
