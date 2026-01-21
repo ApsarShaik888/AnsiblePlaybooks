@@ -1,0 +1,11 @@
+#To ping all hosts or Playbook to ping all hosts.
+
+---
+ - name: Hosts details
+   hosts: all
+   become: true
+   tasks:
+     - name: Host detailed infor
+       ping: 
+
+
