@@ -1,0 +1,39 @@
+##install a nginx and reload 
+#example of handlers and for best practise
+#
+---
+ - name: Install Nginx
+   hosts: webservers
+   become: true
+   tasks:
+     - name: Nginx installation
+       yum:
+         name: nginx
+         state: present
+       notify: Restart_apache
+
+     - name: Status Of Nginx
+       command: systemctl status nginx
+       register: Status
+       ignore_errors: yes
+       changed_when: false
+
+     - name: Remember the variable
+       set_fact:
+         nginx_is_installed: "{{Status.rc == 0}}"
+
+     - name: Display Nginx status
+       debug:
+        msg: "---------Nginx Status ------{{Status.stdout}}-----------"
+
+   handlers:
+    - name: Restart_apache
+      service:
+        name: nginx
+        state: restarted
+      when: nginx_is_installed == true
+
+
+
+
+

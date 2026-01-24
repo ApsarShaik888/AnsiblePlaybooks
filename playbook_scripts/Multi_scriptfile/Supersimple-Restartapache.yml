@@ -1,0 +1,36 @@
+##SUPER Simple - Restart Apache
+
+---
+ - name: My first handler example 
+   hosts: webservers
+   become: true
+   tasks:
+     - name: Create Index html file
+       copy:
+         content: "<h1> Hello, welcome to Ansible!</h1>"
+         dest: /tmp/index.html
+       notify: Say-Hello-Team
+     
+
+     - name: Reads the File index
+       command: cat /tmp/index.html
+       register: file_content
+
+
+     - name: Display the Index html content
+       debug:
+         msg: "content----{{file_content.stdout}}-----" 
+
+     - name: Show Date
+       command: date
+       register: date_result
+
+     - name: Display the Date
+       debug:
+         msg: "Today Date: {{date_result.stdout}}"
+
+   handlers:
+     - name: Say-Hello-Team
+       debug:
+         msg: "The Index.html file was created!"
+
