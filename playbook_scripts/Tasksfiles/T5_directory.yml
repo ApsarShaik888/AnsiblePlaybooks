@@ -1,0 +1,10 @@
+# Create directory using file module.
+#
+---
+ - name: Creating a directory using file module.
+   hosts: all
+   tasks:
+     - name: create a directory
+       file:
+         path: /home/appadmin/dirfolder
+         state: directory
