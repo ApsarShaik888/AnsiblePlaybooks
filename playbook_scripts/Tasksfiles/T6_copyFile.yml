@@ -1,0 +1,12 @@
+##Create a Yaml Script to copy the file by using copy module
+#
+---
+  - name: Copy the file
+    hosts: all
+    tasks:
+      - name: copy a file
+        copy:
+         src: /home/appadmin/Yamlscripts/playbook_scripts/Basicscript/Install-package.yml
+         dest: /home/appadmin/Yamlscripts/
+         mode: 0600
+
